@@ -6,6 +6,10 @@
 #include <stdio.h>
 #endif
 
+#ifdef DRAGONFAIL_ABORT
+#include <stdlib.h>
+#endif
+
 // extern
 struct dgn dgn;
 
