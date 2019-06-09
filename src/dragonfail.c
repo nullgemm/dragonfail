@@ -46,6 +46,23 @@ inline void dgn_basic_log()
 	#endif
 }
 
+inline char* dgn_output_log()
+{
+	if (dgn.error < DGN_SIZE)
+	{
+		return dgn.log[dgn.error];
+	}
+	else
+	{
+		return dgn.log[0];
+	}
+}
+
+enum dgn_error dgn_output_code()
+{
+	return dgn.error;
+}
+
 inline void dgn_throw(enum dgn_error new_code)
 {
 	#ifndef DRAGONFAIL_SKIP
