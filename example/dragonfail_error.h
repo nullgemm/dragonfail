@@ -13,7 +13,10 @@ enum dgn_error
 	DGN_SIZE, // do not remove
 };
 
+//#define DRAGONFAIL_SKIP
 #define DRAGONFAIL_BASIC_LOG
 #define DRAGONFAIL_THROW_BASIC_LOG
+#define DRAGONFAIL_THROW_DEBUG_LOG
+//#define DRAGONFAIL_ABORT
 
 #endif

@@ -19,6 +19,9 @@ This header can also contain some `#define` to modify dragonfail's behaviour:
    disappear from the binary (unless your compiler is a massive douche).
  - `DRAGONFAIL_BASIC_LOG` enables the `dgn_basic_log()` function calls
  - `DRAGONFAIL_THROW_BASIC_LOG` makes `dgn_throw()` call `dgn_basic_log()` automatically
+ - `DRAGONFAIL_THROW_DEBUG_LOG` same as above but also prints the file and line
+   in which `dgn_throw()` is called (you don't even need to compile with symbols
+   because this is achieved the smart way using simple C99 macros)
  - `DRAGONFAIL_ABORT` makes `dgn_throw()` call `abort()`
 
 Again, these `#define` must be placed in **your** `dragonfail_error.h` file.

@@ -63,13 +63,29 @@ enum dgn_error dgn_output_code()
 	return dgn.error;
 }
 
-inline void dgn_throw(enum dgn_error new_code)
+#ifdef DRAGONFAIL_THROW_DEBUG_LOG
+inline void dgn_throw_extra(
+	enum dgn_error new_code,
+	const char* file,
+	unsigned int line)
+#else
+inline void dgn_throw(
+	enum dgn_error new_code)
+#endif
 {
 	#ifndef DRAGONFAIL_SKIP
 		dgn.error = new_code;
 
 		#ifdef DRAGONFAIL_THROW_BASIC_LOG
 		#ifdef DRAGONFAIL_BASIC_LOG
+			#ifdef DRAGONFAIL_THROW_DEBUG_LOG
+				fprintf(
+					stderr,
+					"error in %s line %u: ",
+					file,
+					line);
+			#endif
+
 			dgn_basic_log();
 		#endif
 		#endif
