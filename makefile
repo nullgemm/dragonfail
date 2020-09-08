@@ -37,10 +37,19 @@ run:
 	@cd $(BIND) && ./$(NAME)
 
 # tools
-leakgrind: $(BIND)/$(NAME)
-	@rm -f valgrind.log
-	@cd $(BIND) && valgrind $(VALGRIND) 2> ../valgrind.log ./$(NAME)
-
+## valgrind memory leak detection
+leak: $(BIND)/$(NAME)
+	@echo "# running valgrind"
+	rm -f valgrind.log
+	cd $(BIND) && valgrind $(VALGRIND) 2> ../valgrind.log ./$(NAME)
+	less valgrind.log
+## repository cleaning
 clean:
-	@echo "cleaning"
-	@rm -rf $(BIND) $(OBJD) valgrind.log
+	@echo "# cleaning"
+	rm -rf $(BIND) $(OBJD) valgrind.log
+## remotes edition
+remotes:
+	@echo "# registering remotes"
+	git remote add gitea ssh://git@git.nullgemm.fr:2999/nullgemm/$(NAME).git
+	git remote add github git@github.com:nullgemm/$(NAME).git
+	git remote remove origin
