@@ -47,9 +47,3 @@ leak: $(BIND)/$(NAME)
 clean:
 	@echo "# cleaning"
 	rm -rf $(BIND) $(OBJD) valgrind.log
-## remotes edition
-remotes:
-	@echo "# registering remotes"
-	git remote add gitea ssh://git@git.nullgemm.fr:2999/nullgemm/$(NAME).git
-	git remote add github git@github.com:nullgemm/$(NAME).git
-	git remote remove origin
